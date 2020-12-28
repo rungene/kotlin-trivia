@@ -57,6 +57,7 @@ class GameWonFragment : Fragment() {
                 .setText(getString(R.string.share_success_text, args.numCorrect, args.numQuestions))
                 .setType("text/plain")
                 .intent
+
     }
 
     private fun shareSuccess() {
@@ -67,14 +68,14 @@ class GameWonFragment : Fragment() {
         super.onCreateOptionsMenu(menu, inflater)
         inflater.inflate(R.menu.winner_menu, menu)
         // check if the activity resolves
-        if (null == getShareIntent().resolveActivity(activity!!.packageManager)) {
+        if (null == getShareIntent().resolveActivity(requireActivity().packageManager)) {
             // hide the menu item if it doesn't resolve
             menu.findItem(R.id.share)?.setVisible(false)
         }
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item!!.itemId) {
+        when (item.itemId) {
             R.id.share -> shareSuccess()
         }
         return super.onOptionsItemSelected(item)
